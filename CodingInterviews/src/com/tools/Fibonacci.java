@@ -1,6 +1,11 @@
 package com.tools;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Fibonacci {
+  /** To achieve memoization in DP approach.*/
+  private final Map<Integer, Integer> map = new HashMap<>();
 
   public static void main(String[] args) {
     int n = 4;
@@ -9,6 +14,7 @@ public class Fibonacci {
     System.out.println("\nRecurive: " + fibonacci.recursive(n));
     System.out.println("\nPrinting whole series Recurively:");
     fibonacci.recursivePrint(n, 1, 1);
+    System.out.println("\n\nRecurive DP: " + fibonacci.recursiveDP(n));
     System.out.println("\nRecursion similar to Iteration: ");
     fibonacci.fibonacciRecursiveOther(1, 1, n);
     System.out.println("\nPrinting whole series Iteratively:");
@@ -32,6 +38,18 @@ public class Fibonacci {
     if(n == 0 || n == 1) return 1;
     int sum = a+b; 
     return recursivePrint(n-1, b, sum);
+  }
+  
+  /**
+   * Finds n-th fibonacci number using "DP powered" recursive algo.
+   */
+  private int recursiveDP(int n) {
+    if(n <= 1) return 1;
+    Integer val = map.get(n);
+    if(val != null) return val;
+    int res = recursive(n-1) + recursive(n-2);
+    if(val == null) map.put(n, res);
+    return res;
   }
   
   /** 
@@ -59,7 +77,7 @@ public class Fibonacci {
     }
     
     int a = 1;
-    int b  =1;
+    int b = 1;
     
     System.out.print(a + " " + b + " ");
     
