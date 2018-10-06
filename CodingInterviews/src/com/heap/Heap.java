@@ -52,16 +52,13 @@ public class Heap {
       int leftChildIndex = 2 * fromIndex + 1;
       int rightChildIndex = 2 * fromIndex + 2;
 
-      if (leftChildIndex <= uptoIndex) {
-        int childToSwapIndex;
-        if (rightChildIndex > uptoIndex) childToSwapIndex = leftChildIndex;
-        else childToSwapIndex = (this.heap[leftChildIndex] > this.heap[rightChildIndex]) ? leftChildIndex : rightChildIndex;
-        if (this.heap[fromIndex] < this.heap[childToSwapIndex]) swap(heap, fromIndex, childToSwapIndex);
-        else break;
-        fromIndex = childToSwapIndex;
-      } else {
-        break;
-      }
+      if (leftChildIndex > uptoIndex) break;
+      int childToSwapIndex;
+      if (rightChildIndex > uptoIndex) childToSwapIndex = leftChildIndex;
+      else childToSwapIndex = (this.heap[leftChildIndex] > this.heap[rightChildIndex]) ? leftChildIndex : rightChildIndex;
+      if (this.heap[fromIndex] < this.heap[childToSwapIndex]) swap(heap, fromIndex, childToSwapIndex);
+      else break;
+      fromIndex = childToSwapIndex;
     }
   }
 

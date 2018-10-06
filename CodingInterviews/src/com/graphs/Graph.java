@@ -12,21 +12,23 @@ public class Graph {
   public Graph(int numOfVertices) {
     this.numOfVertices = numOfVertices;
 
-    // define the size of array as
+    // define the size of ArrayList as
     // number of vertices
     adjList = new ArrayList<>(numOfVertices);
 
-    // Create a new list for each vertex
+    // Create a new LinkedList for each vertex
     // such that adjacent nodes can be stored
     for (int i = 0; i < numOfVertices; i++) {
       adjList.add(new LinkedList<>());
     }
   }
 
+  // For Directed Graphs
   public void addEdgeDirected(int source, int dest) {
     adjList.get(source).add(dest);
   }
 
+  // For Un-Directed Graphs
   public void addEdgeUnDirected(int source, int dest) {
     adjList.get(source).add(dest);
     adjList.get(dest).add(source);

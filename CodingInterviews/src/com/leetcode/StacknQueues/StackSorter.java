@@ -3,7 +3,18 @@ package com.leetcode.StacknQueues;
 import java.util.Arrays;
 import java.util.Stack;
 
-/** Sorts the given stack. */
+/** Sorts the given integer stack in ascending order. 
+ * 
+ *  Algorithm:
+ *  
+ *  1. Create a temporary stack say tmpStack.
+ *  2. While input stack is NOT empty do this:
+ *      Pop an element from input stack call it temp
+ *      while temporary stack is NOT empty and top of temporary stack is greater than temp,
+ *        pop from temporary stack and push it to the input stack
+ *        push temp in temporary stack
+ *  3. The sorted numbers are in tmpStack     
+ */
 public class StackSorter {
 
   public static void main(String[] args) {

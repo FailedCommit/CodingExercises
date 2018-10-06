@@ -31,6 +31,7 @@ public class DutchNationalFlag {
   public static void main(String[] args) {
     int[] a = {2, 1, 0, 0, 2, 2, 2, 1, 2, 0, 0, 1, 0, 2, 1, 0};
     int[] b = {1, 0, 2, 0, 1, 2, 0, 2, 0};
+    int[] c = {2, 0, 1, 2, 1, 0, 2, 1, 2, 0, 1};
     
     DutchNationalFlag dnf = new DutchNationalFlag();
     dnf.sort(a, 0, 0, a.length-1);
@@ -38,5 +39,8 @@ public class DutchNationalFlag {
     
     dnf.sort(b, 0, 0, b.length-1);
     System.out.println(Arrays.toString(b));
+    
+    dnf.sort(c, 0, 0, c.length-1);
+    System.out.println(Arrays.toString(c));
   }
 }

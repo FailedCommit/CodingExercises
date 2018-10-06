@@ -68,7 +68,5 @@ public class NQueenProblem {
     System.out.println("\n\n");
     nqp = new NQueenProblem(8);
     nqp.solve();
-
   }
-
 }
