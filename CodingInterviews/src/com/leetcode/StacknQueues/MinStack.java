@@ -12,24 +12,17 @@ package com.leetcode.StacknQueues;
 public class MinStack {
   public Elem top;
 
-  public MinStack() {
-
-  }
-
   public void push(int x) {
-    if (top == null) {
-      top = new Elem(x, x);
-    } else {
+    if (top == null) top = new Elem(x, x);
+    else {
       Elem e = new Elem(x, Math.min(x, top.min));
       e.next = top;
       top = e;
     }
-
   }
 
   public int pop() {
-    if (top == null)
-      return -1;
+    if (top == null) return -1;
     int val = top.value;
     
     Elem temp = top.next;
@@ -41,14 +34,12 @@ public class MinStack {
   }
 
   public int top() {
-    if (top == null)
-      return -1;
+    if (top == null) return -1;
     return top.value;
   }
 
   public int getMin() {
-    if (top == null)
-      return -1;
+    if (top == null) return -1;
     return top.min;
   }
   
@@ -83,5 +74,4 @@ public class MinStack {
     
     System.out.println(minStack.getMin()); // 0
   }
-
 }
