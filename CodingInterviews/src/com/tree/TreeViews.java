@@ -8,12 +8,12 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Queue;
 import java.util.Set;
-import java.util.Stack;
 import java.util.TreeMap;
 
 public class TreeViews {
 
   public static void main(String[] args) {
+    TreeViews tv = new TreeViews();
     /*
      *          1
      *         / \
@@ -27,15 +27,14 @@ public class TreeViews {
      */
     Node root1 = new Node(1, new Node(2, null, new Node(4, null, new Node(5, null, new Node(6, null, null)))), new Node(3, null, null));
     System.out.println("********** Tree One **********");
-    TreeViews tv1 = new TreeViews();
     System.out.println("Top View:");
-    tv1.topView(root1);  // 1 2 3 6
+    tv.topView(root1);  // 1 2 3 6
     System.out.println("\n\nBottom View:");
-    tv1.bottomView(root1); // 2 4 5 6
+    tv.bottomView(root1); // 2 4 5 6
     System.out.println("\n\nLeft View:");
-    tv1.leftView(root1); // 1 2 4 5 6
+    tv.leftView(root1); // 1 2 4 5 6
     System.out.println("\n\nRight View:");
-    tv1.rightView(root1); // 1 3 4 5 6
+    tv.rightView(root1); // 1 3 4 5 6
     
     /*
      *                20
@@ -48,16 +47,33 @@ public class TreeViews {
      */
     Node root2 = new Node(20, new Node(8, new Node(5, null, null), new Node(3, new Node(10, null, null), new Node(14, null, null))), new Node(22, new Node(4, null, null), new Node(25, null, null)));
     System.out.println("\n\n********** Tree Two **********");
-    TreeViews tv2 = new TreeViews();
     System.out.println("Top View:");
-    tv2.topView(root2);  // 20 8 22 5 25 
+    tv.topView(root2);  // 20 8 22 5 25 
     System.out.println("\n\nBottom View:");
-    tv2.bottomView(root2); // 5 10 4 14 25  (4 will be printed and not 3 because we print what comes last)
+    tv.bottomView(root2); // 5 10 4 14 25  (4 will be printed and not 3 because we print what comes last)
     System.out.println("\n\nLeft View:");
-    tv2.leftView(root2); // 20 8 5 10
+    tv.leftView(root2); // 20 8 5 10
     System.out.println("\n\nRight View:");
-    tv2.rightView(root2); // 20 22 25 14
+    tv.rightView(root2); // 20 22 25 14
     
+    /*
+     *          1
+     *         / \
+     *        2   3
+     *         \   \
+     *          5   4
+     *               
+     */
+    Node root3 = new Node(1, new Node(2, null, new Node(5, null, null)), new Node(3, null, new Node(4, null, null)));
+    System.out.println("\n\n********** Tree Three **********");
+    System.out.println("Top View:");
+    tv.topView(root3);  // 1 2 3 4
+    System.out.println("\n\nBottom View:");
+    tv.bottomView(root3); // 2 5 3 4
+    System.out.println("\n\nLeft View:");
+    tv.leftView(root3); // 1 2 5
+    System.out.println("\n\nRight View:");
+    tv.rightView(root3); // 1 3 4
   }
   
   private void topView(Node root) {
@@ -136,19 +152,19 @@ public class TreeViews {
   private void rightView(Node root) {
     // Traverse the tree level by level and print last element of every level
     if(root == null) return;
-    Stack<Node> s = new Stack<>();
-    s.push(root);
-    while(!s.empty()) {
-      Node n = s.peek();
+    Queue<Node> queue = new LinkedList<>();
+    queue.add(root);
+    while(!queue.isEmpty()) {
+      Node n = queue.peek();
       System.out.print(n.val + " ");
       List<Node> nodes = new ArrayList<>();
-      while(!s.empty()) {
-        n = s.pop();
-        if(n.left != null) nodes.add(n.left); 
+      while(!queue.isEmpty()) {
+        n = queue.poll();
         if(n.right != null) nodes.add(n.right); 
+        if(n.left != null) nodes.add(n.left); 
       }
-      s.clear();
-      s.addAll(nodes);
+      queue.clear();
+      queue.addAll(nodes);
     }
   }
 }
