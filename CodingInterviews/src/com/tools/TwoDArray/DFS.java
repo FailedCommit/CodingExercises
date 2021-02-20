@@ -66,4 +66,11 @@ public class DFS {
     }
     return neighbors;
   }
+
+  private class MatrixNode {
+    int x;
+    int y;
+  }
 }
+
+
