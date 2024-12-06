@@ -1,4 +1,4 @@
-package com.tools.slidingwindow;
+package com.tools.misc;
 
 public class MaxSumSubarray {
     public static void main(String[] args) {
